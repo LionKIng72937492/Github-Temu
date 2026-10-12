@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Nexus Snake – Arena</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="hud" class="hidden">
+  <div class="stat"><span>Punkte</span><b id="sScore">0</b></div>
+  <div class="stat"><span>Länge</span><b id="sLen">0</b></div>
+  <div class="stat"><span>Rang</span><b id="sRank">-</b></div>
+  <div class="stat"><span>Kills</span><b id="sKills">0</b></div>
+  <div class="stat hidden" id="fps"><span>FPS</span><b id="sFps">0</b></div>
+  <button id="pauseBtn" class="icon" title="Pause (ESC)">II</button>
+</div>
+
+<div id="board" class="panel hidden"><h4>Rangliste</h4><ol id="boardList"></ol></div>
+<canvas id="minimap" width="150" height="150" class="hidden"></canvas>
+<button id="boostBtn" class="boost hidden">BOOST</button>
+
+<section id="menu" class="overlay">
+  <div class="card">
+    <h1 class="logo">NEXUS<span>SNAKE</span></h1>
+    <p class="tag">Wachse. Überlebe. Dominiere die Arena.</p>
+    <input id="nameInput" maxlength="14" placeholder="Dein Name" autocomplete="off">
+    <div class="swatches" id="swatches"></div>
+    <canvas id="preview" width="260" height="90"></canvas>
+    <button id="playBtn" class="primary">PLAY</button>
+    <div class="row">
+      <button id="settingsBtn" class="ghost">Einstellungen</button>
+      <button id="helpBtn" class="ghost">Steuerung</button>
+    </div>
+    <p id="help" class="help hidden">
+      PC: Maus steuert · Linke Taste oder Leertaste = Boost · ESC = Pause · Mausrad = Zoom<br>
+      Handy: Finger ziehen = steuern · BOOST-Knopf halten
+    </p>
+  </div>
+</section>
+
+<section id="settings" class="overlay hidden">
+  <div class="card">
+    <h2>Einstellungen</h2>
+    <label class="opt"><input type="checkbox" id="optFps"> FPS-Anzeige</label>
+    <label class="opt"><input type="checkbox" id="optParticles" checked> Partikeleffekte</label>
+    <label class="opt">Steuerungsempfindlichkeit
+      <input type="range" id="optSens" min="0.5" max="1.5" step="0.1" value="1">
+    </label>
+    <button id="settingsBack" class="primary">ZURÜCK</button>
+  </div>
+</section>
+
+<section id="pause" class="overlay hidden">
+  <div class="card">
+    <h2>Pause</h2>
+    <button id="resumeBtn" class="primary">WEITER</button>
+    <button id="quitBtn" class="ghost wide">Zum Menü</button>
+  </div>
+</section>
+
+<section id="gameover" class="overlay hidden">
+  <div class="card">
+    <h2>Gefressen!</h2>
+    <p id="goStats" class="stats"></p>
+    <button id="restartBtn" class="primary">RESTART</button>
+    <button id="goMenuBtn" class="ghost wide">Zum Menü</button>
+  </div>
+</section>
+
+<script src="game.js"></script>
+</body>
+</html>
